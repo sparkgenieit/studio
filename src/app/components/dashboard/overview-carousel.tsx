@@ -3,6 +3,8 @@
 
 import * as React from "react"
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay"
+
 import {
   Card,
   CardContent,
@@ -14,8 +16,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -70,6 +70,10 @@ export function OverviewCarousel() {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
+  )
+
   React.useEffect(() => {
     if (!api) {
       return
@@ -93,7 +97,13 @@ export function OverviewCarousel() {
 
   return (
     <Card className="shadow-sm rounded-2xl h-full bg-gradient-to-br from-accent to-primary text-primary-foreground relative overflow-hidden">
-        <Carousel setApi={setApi} className="h-full">
+        <Carousel 
+            setApi={setApi} 
+            className="h-full"
+            plugins={[plugin.current]}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+        >
             <CarouselContent className="h-full">
                 {overviewItems.map((item, index) => {
                     const image = getImage(item.imageId);
