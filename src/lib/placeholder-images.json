@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "logo",
+      "description": "DoView Holidays Logo",
+      "imageUrl": "https://images.unsplash.com/photo-1549924231-f129b911e442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjE5NDUzNzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "traveller",
+      "description": "An icon of a traveller with a backpack.",
+      "imageUrl": "https://images.unsplash.com/photo-1555877402-2f8e18e52294?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwdHJhdmVsfGVufDB8fHx8MTc2MTg5Mzg5OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person travel"
+    },
+    {
+      "id": "moneyBag",
+      "description": "An icon of a bag of money.",
+      "imageUrl": "https://images.unsplash.com/photo-1607623198457-7aad066a4ade?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb25leSUyMGZpbmFuY2V8ZW58MHx8fHwxNzYxOTY2NTgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "money finance"
+    },
+    {
+      "id": "calculator",
+      "description": "An icon of a calculator.",
+      "imageUrl": "https://images.unsplash.com/photo-1600493033157-eed3fbe95d96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjYWxjdWxhdG9yJTIwbWF0aHxlbnwwfHx8fDE3NjE5NzUyNjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "calculator math"
+    },
+    {
+      "id": "cancelled",
+      "description": "An icon representing a cancelled booking.",
+      "imageUrl": "https://images.unsplash.com/photo-1592885703945-6113886c9651?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYW5jZWwlMjBjcm9zc3xlbnwwfHx8fDE3NjE5NzUyNjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cancel cross"
+    },
+    {
+      "id": "driver",
+      "description": "An illustration of a driver.",
+      "imageUrl": "https://images.unsplash.com/photo-1523346557574-d36bd2ced24c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBkcml2aW5nfGVufDB8fHx8MTc2MTkxNzA2OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person driving"
+    },
+    {
+      "id": "agentAvatar",
+      "description": "An avatar for a star performer agent.",
+      "imageUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBhdmF0YXJ8ZW58MHx8fHwxNzYxODg4NTMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person avatar"
+    }
+  ]
 }
