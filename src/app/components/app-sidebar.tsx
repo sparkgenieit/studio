@@ -107,7 +107,7 @@ export default function AppSidebar() {
             data-state={isOpen ? 'expanded' : 'collapsed'}
         >
             <Sidebar>
-                <SidebarHeader>
+                <SidebarHeader className="relative">
                     <div className={cn(
                         "flex items-center gap-3 p-2 transition-all duration-300",
                         !isOpen && "gap-0"
@@ -120,6 +120,20 @@ export default function AppSidebar() {
                             DoView Holidays
                         </span>
                     </div>
+                     <Button
+                        onClick={() => setIsPinned(!isPinned)}
+                        variant="ghost"
+                        size="icon"
+                        className={cn(
+                            "rounded-full bg-card border-2 shadow-md absolute z-20 transition-all duration-300 ease-in-out hover:bg-card",
+                            "h-8 w-8 top-4",
+                             !isOpen && 'opacity-0 -right-4',
+                             isOpen && 'opacity-100 right-2'
+                        )}
+                    >
+                        {isPinned ? <CircleDot className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                        <span className="sr-only">Toggle Pinned Sidebar</span>
+                    </Button>
                 </SidebarHeader>
 
                 <SidebarContent className="p-2">
@@ -143,20 +157,7 @@ export default function AppSidebar() {
                 </SidebarContent>
 
                 <div className="mt-auto p-2">
-                    <Button
-                        onClick={() => setIsPinned(!isPinned)}
-                        variant="ghost"
-                        size="icon"
-                        className={cn(
-                            "rounded-full bg-card border-2 shadow-md absolute top-1/2 -translate-y-1/2 z-20 transition-all duration-300 ease-in-out hover:bg-card",
-                            "h-8 w-8",
-                             !isOpen && 'opacity-0 -right-4',
-                             isOpen && 'opacity-100 right-[-16px]'
-                        )}
-                    >
-                        {isPinned ? <CircleDot className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
-                        <span className="sr-only">Toggle Pinned Sidebar</span>
-                    </Button>
+                    
                     <Separator className="my-2" />
                     <SidebarMenu>
                         <NavMenuItem item={settingsMenuItem} isPinned={isOpen} />
