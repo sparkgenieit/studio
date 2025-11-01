@@ -5,7 +5,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import {
     Sidebar,
     SidebarContent,
@@ -13,7 +12,6 @@ import {
     SidebarMenu,
     SidebarMenuItem,
     SidebarMenuButton,
-    useSidebar,
     SidebarGroup
 } from "@/components/ui/sidebar";
 import {
@@ -33,7 +31,9 @@ import {
     User,
     BookUp,
     Settings,
-    ChevronDown
+    ChevronDown,
+    Circle,
+    CircleDot
 } from "lucide-react";
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
@@ -68,13 +68,13 @@ const menuItems = [
 
 const settingsMenuItem = { href: '/settings', label: 'Settings', icon: Settings };
 
-const NavMenuItem = ({ item }: { item: (typeof menuItems)[0] | typeof settingsMenuItem }) => {
+const NavMenuItem = ({ item, isPinned }: { item: (typeof menuItems)[0] | typeof settingsMenuItem; isPinned: boolean }) => {
     const pathname = usePathname();
-    const isActive = pathname === item.href;
+    const isActive = item.href ? pathname === item.href : false;
 
     return (
         <SidebarMenuItem>
-            <SidebarMenuButton asChild isActive={isActive}>
+            <SidebarMenuButton asChild isActive={isActive} tooltip={!isPinned ? item.label : undefined}>
                 <Link href={item.href || '#'}>
                     <item.icon className="w-5 h-5 shrink-0" />
                     <span className="truncate">{item.label}</span>
@@ -85,52 +85,78 @@ const NavMenuItem = ({ item }: { item: (typeof menuItems)[0] | typeof settingsMe
 };
 
 export default function AppSidebar() {
-    const { open, isMobile } = useSidebar();
+    const [isPinned, setIsPinned] = React.useState(false);
+    const [isHovered, setIsHovered] = React.useState(false);
     const logo = PlaceHolderImages.find(p => p.id === 'logo');
 
+    const isOpen = isPinned || isHovered;
+
     return (
-        <Sidebar>
-            <SidebarHeader>
-                <div className={cn(
-                    "flex items-center gap-3 p-2 transition-all duration-300",
-                    !open && !isMobile && "gap-0"
-                )}>
-                    {logo && <Image src={logo.imageUrl} alt={logo.description} width={40} height={36} data-ai-hint={logo.imageHint} />}
-                    <span className={cn(
-                        "font-bold text-lg font-headline truncate transition-opacity duration-200",
-                        !open && !isMobile ? "w-0 opacity-0" : "w-auto opacity-100"
+        <div
+            className={cn("group/sidebar fixed top-0 left-0 h-screen z-20 transition-[width] duration-300 ease-in-out",
+                isOpen ? "w-[var(--sidebar-width)]" : "w-[var(--sidebar-width-icon)]"
+            )}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            data-state={isOpen ? 'expanded' : 'collapsed'}
+        >
+            <Sidebar>
+                <SidebarHeader>
+                    <div className={cn(
+                        "flex items-center gap-3 p-2 transition-all duration-300",
+                        !isOpen && "gap-0"
                     )}>
-                        DoView Holidays
-                    </span>
+                        {logo && <Image src={logo.imageUrl} alt={logo.description} width={40} height={36} data-ai-hint={logo.imageHint} />}
+                        <span className={cn(
+                            "font-bold text-lg font-headline truncate transition-opacity duration-200",
+                            !isOpen ? "w-0 opacity-0" : "w-auto opacity-100"
+                        )}>
+                            DoView Holidays
+                        </span>
+                    </div>
+                </SidebarHeader>
+
+                <SidebarContent className="p-2">
+                    <SidebarMenu>
+                        {menuItems.map((item, index) => (
+                            <React.Fragment key={index}>
+                               {item.label === "Accounts" ? (
+                                 <SidebarMenuItem>
+                                   <SidebarMenuButton tooltip={!isOpen ? item.label : undefined}>
+                                       <item.icon className="w-5 h-5 shrink-0" />
+                                       <span className="truncate flex-1">{item.label}</span>
+                                       <ChevronDown className="w-4 h-4" />
+                                   </SidebarMenuButton>
+                                 </SidebarMenuItem>
+                               ) : (
+                                 <NavMenuItem item={item} isPinned={isOpen} />
+                               )}
+                            </React.Fragment>
+                        ))}
+                    </SidebarMenu>
+                </SidebarContent>
+
+                <div className="mt-auto p-2">
+                    <Button
+                        onClick={() => setIsPinned(!isPinned)}
+                        variant="ghost"
+                        size="icon"
+                        className={cn(
+                            "rounded-full bg-card border-2 shadow-md absolute top-1/2 -translate-y-1/2 z-20 transition-all duration-300 ease-in-out hover:bg-card",
+                            "h-8 w-8",
+                             !isOpen && 'opacity-0 -right-4',
+                             isOpen && 'opacity-100 right-[-16px]'
+                        )}
+                    >
+                        {isPinned ? <CircleDot className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                        <span className="sr-only">Toggle Pinned Sidebar</span>
+                    </Button>
+                    <Separator className="my-2" />
+                    <SidebarMenu>
+                        <NavMenuItem item={settingsMenuItem} isPinned={isOpen} />
+                    </SidebarMenu>
                 </div>
-            </SidebarHeader>
-
-            <SidebarContent className="p-2">
-                <SidebarMenu>
-                    {menuItems.map((item, index) => (
-                        <React.Fragment key={index}>
-                           {item.label === "Accounts" ? (
-                             <SidebarMenuItem>
-                               <SidebarMenuButton>
-                                   <item.icon className="w-5 h-5 shrink-0" />
-                                   <span className="truncate flex-1">{item.label}</span>
-                                   <ChevronDown className="w-4 h-4" />
-                               </SidebarMenuButton>
-                             </SidebarMenuItem>
-                           ) : (
-                             <NavMenuItem item={item} />
-                           )}
-                        </React.Fragment>
-                    ))}
-                </SidebarMenu>
-            </SidebarContent>
-
-            <div className="mt-auto p-2">
-                <Separator className="my-2" />
-                <SidebarMenu>
-                    <NavMenuItem item={settingsMenuItem} />
-                </SidebarMenu>
-            </div>
-        </Sidebar>
+            </Sidebar>
+        </div>
     );
 }
