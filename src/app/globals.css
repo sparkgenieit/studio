@@ -106,17 +106,11 @@ body {
     border-bottom-right-radius: 4px;
   }
 
+  [data-sidebar="content"] {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
   [data-sidebar="content"]::-webkit-scrollbar {
-    width: 6px;
-  }
-  [data-sidebar="content"]::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  [data-sidebar="content"]::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 6px;
-  }
-  [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
+    display: none;
   }
 }
