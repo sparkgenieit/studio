@@ -41,6 +41,12 @@
       "description": "An avatar for a star performer agent.",
       "imageUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBhdmF0YXJ8ZW58MHx8fHwxNzYxODg4NTMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person avatar"
+    },
+    {
+      "id": "vehicle",
+      "description": "An illustration of a red car.",
+      "imageUrl": "https://images.unsplash.com/photo-1579211897986-63e1fcd564e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyZWQlMjBjYXJ8ZW58MHx8fHwxNzYxODk3MjQ2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red car"
     }
   ]
 }

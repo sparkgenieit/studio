@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@/app/components/dashboard/breadcrumb";
 import { WelcomeCard } from "@/app/components/dashboard/welcome-card";
 import { StatsGrid } from "@/app/components/dashboard/stats-grid";
-import { DriverOverviewCard } from "@/app/components/dashboard/driver-overview-card";
+import { OverviewCarousel } from "@/app/components/dashboard/overview-carousel";
 import { DailyMomentCard } from "@/app/components/dashboard/daily-moment-card";
 import { StarPerformersCard } from "@/app/components/dashboard/star-performers-card";
 
@@ -22,7 +22,7 @@ export default function DashboardPage() {
           <StatsGrid />
         </div>
         <div className="lg:col-span-1">
-          <DriverOverviewCard />
+          <OverviewCarousel />
         </div>
       </div>
 
