@@ -6,15 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuItem,
-    SidebarMenuButton,
-    SidebarGroup
-} from "@/components/ui/sidebar";
-import {
     LayoutGrid,
     PlusSquare,
     FileClock,
@@ -39,6 +30,14 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuItem,
+    SidebarMenuButton,
+} from "@/components/ui/sidebar";
 
 const menuItems = [
     { href: '/', label: 'Dashboard', icon: LayoutGrid },
@@ -90,6 +89,13 @@ export default function AppSidebar() {
     const logo = PlaceHolderImages.find(p => p.id === 'logo');
 
     const isOpen = isPinned || isHovered;
+
+    React.useEffect(() => {
+        const layout = document.querySelector('.group\\/layout');
+        if (layout) {
+            layout.setAttribute('data-sidebar-state', isOpen ? 'expanded' : 'collapsed');
+        }
+    }, [isOpen]);
 
     return (
         <div
